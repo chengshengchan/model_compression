@@ -43,10 +43,16 @@ $python teacher-student.py -h for more information
 
 
 # References
-[1] Ba, J. and Caruana, R. Do deep nets really need to be deep? In NIPS 2014.
+[1] Ba, J. and Caruana, R. Do deep nets really need to be deep? In NIPS 2014. 
+
 [2] Bharat Bhusan Sau Vineeth N. Balasubramanian, Deep Model Compression: Distilling Knowledge from Noisy Teachers. arXiv 2016.
+<<<<<<< HEAD
 [3] Hinton, G. E., Vinyals, O., and Dean, J. Distilling the knowledge in a neural network. arXiv 2015.
+=======
+
+>>>>>>> e85ee92c40d85bd11f6addaffacf5ea7f680103a
 [3] https://github.com/ethereon/caffe-tensorflow
+
 [4] Network in Network model - https://github.com/aymericdamien/TensorFlow-Examples/
 [5] Y. LeCun, L. Bottou, Y. Bengio and P. Haffner: Gradient-Based Learning Applied to Document Recognition, Proceedings of the IEEE 1998
 
