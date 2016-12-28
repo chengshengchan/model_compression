@@ -43,7 +43,7 @@ Also, you can validate your pre-trained teacher model by <br>
 
 This can make sure that your caffe-teacher-model transfer to tensorflow successfully.
 <br>
-***python teacher-student.py -h *** for more information
+***python teacher-student.py -h*** for more information
 
 
 
