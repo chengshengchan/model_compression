@@ -20,7 +20,8 @@ In docs, there are two images for the network architecture.
 
 
 #Usage
-In teacher-student.py, there is three methods to train student network.
+In teacher-student.py, there is three methods to train student network.<br>
+You need to modify the cifar-dataset-path in function *read_cifar10*
 
 ###Basic Usage
 **train by [1]**
