@@ -237,15 +237,14 @@ def train():
         #teacher = tf.add(teacher, tf.tile(noisy,tf.constant([1,10])))
         print bcolors.G+"prepare for training, noisy mode"+bcolors.END
         tf_loss = tf.nn.l2_loss(teacher - student)/batch_size
-    elif args.KD == True:
+    elif args.KD == True:   # correct Hinton method at 2017.1.3
         print bcolors.G+"prepare for training, knowledge distilling mode"+bcolors.END
-        #one_hot = tf.sparse_to_dense(y, tf.pack([batch_size,n_classes]), 1.0, 0.0)
-        one_hot = tf.one_hot(y, 10,1.0,0.0)
+        one_hot = tf.one_hot(y, n_classes,1.0,0.0)
         #one_hot = tf.cast(one_hot_int, tf.float32)
         teacher_tau = tf.scalar_mul(1.0/args.tau, teacher)
         student_tau = tf.scalar_mul(1.0/args.tau, student)
         objective1 = tf.nn.sigmoid_cross_entropy_with_logits(student_tau, one_hot)
-        objective2 = tf.nn.sigmoid_cross_entropy_with_logits(student_tau, teacher_tau)
+        objective2 = tf.scalar_mul(0.5, tf.square(student_tau-teacher_tau))
         tf_loss = (args.lamda*tf.reduce_sum(objective1) + (1-args.lamda)*tf.reduce_sum(objective2))/batch_size
     else:
         print bcolors.G+"prepare for training, NIPS2014 mode"+bcolors.END
@@ -254,7 +253,7 @@ def train():
     optimizer1 = tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(tf_loss)
     optimizer2 = tf.train.AdamOptimizer(learning_rate=learning_rate/10).minimize(tf_loss)
 
-    gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.8)
+    gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.5)
     sess = tf.InteractiveSession(config=tf.ConfigProto(gpu_options=gpu_options, allow_soft_placement=True))
     tf.initialize_all_variables().run()
     with tf.device('/cpu:0'):
