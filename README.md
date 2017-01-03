@@ -46,8 +46,22 @@ This can make sure that your caffe-teacher-model transfer to tensorflow successf
 <br>
 ***python teacher-student.py -h*** for more information
 
+# Result
 
+All three methods train 100 epochs, with dropout ratio=0.8, lr=1e-3, decay 0.1 at 80th epoch.<br>
+In method[2], noisy_ratio=0.5, sigma=0.1. <br>
+In methos[3], lamda=0.3, tau=0.3.<br>
 
+This table shows the accuracy on testing dataset, test by 100-epoch-model.<br>
+See more details in *result*. 
+
+| method[1] | method[2] | method[3] |
+|:---------:|:---------:|:---------:|
+|   71.97%  |   70.63%  |   70.96%  |
+
+The accuarcy of original model which directly learn by ground truth label:<br>
+teacher model : 78.1% <br>
+student model : 66.15% <br>
 
 # References
 [1] Ba, J. and Caruana, R. Do deep nets really need to be deep? In NIPS 2014. 
